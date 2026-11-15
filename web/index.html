@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mizos — Your measurements, always handy</title>
+  <meta name="description" content="Store body measurements for your whole family. Share with tailors instantly via WhatsApp. Free, offline, no account needed.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --primary: #1A1A1A;
+      --accent: #2D5BE3;
+      --accent-light: #EEF2FF;
+      --bg: #F5F5F5;
+      --surface: #FFFFFF;
+      --text: #1A1A1A;
+      --text-sec: #6B6B6B;
+      --border: #E5E5E5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+    .hero .brand {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .hero .brand span { color: var(--accent); margin-left: -1px; }
+    .hero .tagline {
+      font-size: 20px;
+      color: rgba(255,255,255,0.6);
+      max-width: 400px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+    }
+    .hero .cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.3); }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+
+    /* ── Features ── */
+    .features {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    .features h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .feature-icon { font-size: 32px; margin-bottom: 12px; }
+    .feature-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+    .feature-desc { font-size: 14px; color: var(--text-sec); line-height: 1.5; }
+
+    /* ── How it works ── */
+    .how {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 24px;
+    }
+    .how-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .how h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .step-desc { font-size: 14px; color: var(--text-sec); line-height: 1.5; }
+
+    /* ── Categories ── */
+    .categories {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 64px 24px;
+      text-align: center;
+    }
+    .categories h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .categories .subtitle {
+      color: var(--text-sec);
+      margin-bottom: 32px;
+      font-size: 15px;
+    }
+    .cat-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .cat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 64px 24px;
+    }
+    .cta-section h2 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+    .cta-section p { color: var(--text-sec); margin-bottom: 28px; font-size: 15px; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: var(--text-sec);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 20px 48px; }
+      .hero .brand { font-size: 36px; }
+      .hero .tagline { font-size: 17px; }
+      .share-inner { flex-direction: column; text-align: center; }
+      .share-mock { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="brand">mizo<span>s</span></div>
+    <p class="tagline">Your measurements, always handy. Store sizes for your whole family. Share with tailors in one tap.</p>
+    <div class="cta-row">
+      <a class="btn btn-accent" href="#" id="downloadBtn">Download App</a>
+      <a class="btn btn-outline" href="#how">How it works</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <h2>Why Mizos?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">👨‍👩‍👧‍👦</div>
+        <div class="feature-title">Family profiles</div>
+        <div class="feature-desc">Store measurements for everyone — yourself, spouse, kids, parents. All in one place.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📤</div>
+        <div class="feature-title">Instant sharing</div>
+        <div class="feature-desc">Share measurements via WhatsApp or any app. Your tailor sees the data instantly — no app needed on their end.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <div class="feature-title">Works offline</div>
+        <div class="feature-desc">All data stored on your phone. No internet needed, no account required, no cloud sync to worry about.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <div class="feature-title">7 languages</div>
+        <div class="feature-desc">Available in English, Hindi, Punjabi, Marathi, Bengali, Kannada, and Gujarati.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📏</div>
+        <div class="feature-title">Every category</div>
+        <div class="feature-desc">T-shirts, shirts, pants, suits, shoes, rings, bangles, eyeglasses, and body measurements.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">Private by default</div>
+        <div class="feature-desc">Your data never leaves your phone unless you choose to share it. No servers, no tracking.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how" id="how">
+    <div class="how-inner">
+      <h2>How it works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">👤</div>
+          <div>
+            <div class="step-title">Create a profile</div>
+            <div class="step-desc">Add yourself or a family member. Link to your phone contacts if you want.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">📏</div>
+          <div>
+            <div class="step-title">Add measurements</div>
+            <div class="step-desc">Pick a category — shirt, pant, shoes — and enter your measurements. Supports inches and cm.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">📤</div>
+          <div>
+            <div class="step-title">Share when needed</div>
+            <div class="step-desc">Tap share, send via WhatsApp. Your tailor gets a clean message with all the numbers + a link to save them.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories">
+    <h2>Measurements for everything</h2>
+    <p class="subtitle">Pre-built templates with the right fields for each category</p>
+    <div class="cat-grid">
+      <div class="cat-chip">👕 T-Shirt</div>
+      <div class="cat-chip">👔 Shirt</div>
+      <div class="cat-chip">🤵 Suit / Blazer</div>
+      <div class="cat-chip">👖 Pant</div>
+      <div class="cat-chip">👟 Shoes</div>
+      <div class="cat-chip">👓 Eyeglasses</div>
+      <div class="cat-chip">💍 Ring</div>
+      <div class="cat-chip">⭕ Bangles</div>
+      <div class="cat-chip">📏 Body</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Stop texting your tailor the wrong size</h2>
+    <p>Free. No account. Works offline.</p>
+    <div class="cta-row" style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <a class="btn btn-accent" href="#" id="downloadBtn2">Download for Android</a>
+      <a class="btn" href="#" id="downloadBtn3" style="background:var(--primary);color:#fff;">Download for iPhone</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>mizo<span style="color:var(--accent);font-weight:700;">s</span> &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="mailto:hello@mizos.in">Contact</a></p>
+    <p style="margin-top:8px;">&copy; 2024 Mizos. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    // TODO: Replace with actual store URLs when published
+    const IOS_STORE_URL = '#';
+    const ANDROID_STORE_URL = '#';
+
+    document.querySelectorAll('[id^="downloadBtn"]').forEach(btn => {
+      if (isIos) {
+        btn.href = IOS_STORE_URL;
+        btn.textContent = 'Download for iPhone';
+      } else {
+        btn.href = ANDROID_STORE_URL;
+        btn.textContent = 'Download for Android';
+      }
+    });
+  </script>
+</body>
+</html>

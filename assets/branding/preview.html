@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mizos — Brand Assets</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, system-ui, sans-serif; background: #E5E5E5; padding: 40px 20px; }
+  h1 { text-align: center; font-size: 28px; margin-bottom: 8px; }
+  .sub { text-align: center; color: #6B6B6B; margin-bottom: 40px; }
+  .grid { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .row.single { grid-template-columns: 1fr; }
+  .row.triple { grid-template-columns: 1fr 1fr 1fr; }
+  .asset {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .asset-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    min-height: 200px;
+  }
+  .asset-preview.checkerboard {
+    background: repeating-conic-gradient(#f0f0f0 0% 25%, #fff 0% 50%) 0 0 / 20px 20px;
+  }
+  .asset-preview.dark { background: #1A1A1A; }
+  .asset-preview img, .asset-preview object { max-width: 100%; height: auto; }
+  .asset-info { padding: 16px 20px; border-top: 1px solid #E5E5E5; }
+  .asset-name { font-size: 14px; font-weight: 600; }
+  .asset-desc { font-size: 12px; color: #6B6B6B; margin-top: 2px; }
+  @media (max-width: 600px) { .row, .row.triple { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<h1>Mizos Brand Assets</h1>
+<p class="sub">SVG — resolution independent, infinitely scalable</p>
+
+<div class="grid">
+
+  <!-- Logos -->
+  <div class="row">
+    <div class="asset">
+      <div class="asset-preview dark">
+        <img src="logo-dark-bg.svg" alt="Logo on dark" style="width: 80%;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">logo-dark-bg.svg</div>
+        <div class="asset-desc">Primary logo — dark background</div>
+      </div>
+    </div>
+    <div class="asset">
+      <div class="asset-preview" style="background: #fff;">
+        <img src="logo-light-bg.svg" alt="Logo on light" style="width: 80%;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">logo-light-bg.svg</div>
+        <div class="asset-desc">Primary logo — light background</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="asset">
+      <div class="asset-preview checkerboard">
+        <img src="logo-transparent.svg" alt="Logo transparent" style="width: 70%;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">logo-transparent.svg</div>
+        <div class="asset-desc">Dark text, transparent — for light surfaces</div>
+      </div>
+    </div>
+    <div class="asset">
+      <div class="asset-preview dark">
+        <img src="logo-white-transparent.svg" alt="Logo white transparent" style="width: 70%;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">logo-white-transparent.svg</div>
+        <div class="asset-desc">White text, transparent — for dark surfaces</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tagline -->
+  <div class="row single">
+    <div class="asset">
+      <div class="asset-preview dark">
+        <img src="logo-with-tagline.svg" alt="Logo with tagline" style="width: 70%;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">logo-with-tagline.svg</div>
+        <div class="asset-desc">Full logo with tagline — for landing pages, store listing</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Icons -->
+  <div class="row triple">
+    <div class="asset">
+      <div class="asset-preview" style="background: #F5F5F5;">
+        <img src="icon-square.svg" alt="Square icon" style="width: 120px;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">icon-square.svg</div>
+        <div class="asset-desc">App icon — iOS / Play Store</div>
+      </div>
+    </div>
+    <div class="asset">
+      <div class="asset-preview" style="background: #F5F5F5;">
+        <img src="icon-circle.svg" alt="Circle icon" style="width: 120px;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">icon-circle.svg</div>
+        <div class="asset-desc">Circle icon — profile, social</div>
+      </div>
+    </div>
+    <div class="asset">
+      <div class="asset-preview" style="background: #F5F5F5;">
+        <img src="favicon.svg" alt="Favicon" style="width: 64px; image-rendering: pixelated;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">favicon.svg</div>
+        <div class="asset-desc">Favicon — browser tab</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adaptive -->
+  <div class="row">
+    <div class="asset">
+      <div class="asset-preview dark">
+        <img src="icon-adaptive-foreground.svg" alt="Adaptive foreground" style="width: 120px;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">icon-adaptive-foreground.svg</div>
+        <div class="asset-desc">Android adaptive icon foreground layer</div>
+      </div>
+    </div>
+    <div class="asset">
+      <div class="asset-preview" style="background: #1A1A1A; border-radius: 50%; width: 140px; height: 140px; margin: 20px auto; min-height: auto; padding: 0;">
+        <img src="icon-adaptive-foreground.svg" alt="Adaptive preview" style="width: 100%;">
+      </div>
+      <div class="asset-info">
+        <div class="asset-name">Adaptive preview</div>
+        <div class="asset-desc">How it looks with #1A1A1A background on Android</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

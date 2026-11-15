@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" width="1024" height="1024">
+  <!-- Android adaptive icon foreground (safe zone: inner 66/108) -->
+  <text x="54" y="70" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-1">
+    <tspan fill="#FFFFFF">m</tspan>
+  </text>
+  <circle cx="80" cy="30" r="7" fill="#2D5BE3"/>
+</svg>

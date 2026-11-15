@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mizos — Shared Measurements</title>
+  <meta name="description" content="View and save shared body measurements">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <style>
+    :root {
+      --primary: #1A1A1A;
+      --accent: #2D5BE3;
+      --accent-light: #EEF2FF;
+      --bg: #F5F5F5;
+      --surface: #FFFFFF;
+      --text: #1A1A1A;
+      --text-sec: #6B6B6B;
+      --border: #E5E5E5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Header ── */
+    .header {
+      margin-bottom: 24px;
+    }
+    .header a {
+      font-size: 24px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    .header a span { color: var(--accent); margin-left: -0.5px; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      max-width: 420px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .card-top {
+      padding: 28px 24px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .icon { font-size: 48px; margin-bottom: 8px; }
+    .card-top h1 { font-size: 20px; font-weight: 700; }
+    .tag {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-top: 8px;
+    }
+
+    /* ── Fields ── */
+    .fields { padding: 0; }
+    .field {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+    }
+    .field:last-child { border-bottom: none; }
+    .field-label { color: var(--text-sec); }
+    .field-value { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+    /* ── Actions ── */
+    .actions {
+      padding: 20px 24px 24px;
+      border-top: 1px solid var(--border);
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-secondary {
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      margin-top: 10px;
+    }
+    .status {
+      font-size: 13px;
+      color: var(--text-sec);
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* ── Empty ── */
+    .empty {
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-sec);
+    }
+    .empty .icon { font-size: 40px; margin-bottom: 12px; }
+    .empty p { font-size: 15px; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--text-sec);
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="/">mizo<span>s</span></a>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="icon" id="icon">📏</div>
+      <h1 id="title">Measurement</h1>
+      <div id="tagContainer"></div>
+    </div>
+
+    <div class="fields" id="fields"></div>
+
+    <div class="empty" id="empty" style="display:none;">
+      <div class="icon">🤷</div>
+      <p>No measurement data in this link</p>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-accent" id="openApp" onclick="openInApp()">Save in Mizos</button>
+      <a class="btn btn-secondary" id="storeBtn" href="#" style="display:none">Get the app</a>
+      <p class="status" id="status"></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="/">mizos.in</a> — your measurements, always handy
+  </div>
+
+  <script>
+    const ICONS = {
+      tshirt: '👕', shirt: '👔', suit: '🤵', pant: '👖', shoes: '👟',
+      eyeglasses: '👓', ring: '💍', bangles: '⭕', body: '📏',
+    };
+    const LABELS = {
+      tshirt: 'T-Shirt', shirt: 'Shirt', suit: 'Suit / Blazer', pant: 'Pant',
+      shoes: 'Shoes', eyeglasses: 'Eyeglasses', ring: 'Ring', bangles: 'Bangles', body: 'Body',
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const profileName = params.get('n') || '';
+    const cat = params.get('cat') || '';
+    const label = params.get('label') || LABELS[cat] || cat;
+    const categoryLabel = LABELS[cat] || cat;
+
+    document.getElementById('icon').textContent = ICONS[cat] || '📏';
+    var title = categoryLabel || 'Measurement';
+    if (profileName) title = profileName + ' — ' + title;
+    document.getElementById('title').textContent = title;
+
+    if (label && label !== categoryLabel) {
+      document.getElementById('tagContainer').innerHTML = '<span class="tag">' + label + '</span>';
+    }
+
+    const fieldsEl = document.getElementById('fields');
+    let fieldCount = 0;
+    for (const [key, value] of params.entries()) {
+      if (!key.startsWith('f_')) continue;
+      fieldCount++;
+      const fieldName = key.slice(2).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const div = document.createElement('div');
+      div.className = 'field';
+      div.innerHTML = '<span class="field-label">' + fieldName + '</span><span class="field-value">' + value + '</span>';
+      fieldsEl.appendChild(div);
+    }
+
+    if (fieldCount === 0) {
+      document.getElementById('empty').style.display = 'block';
+    }
+
+    const deepLink = 'mizos:///import?' + params.toString();
+    const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+
+    // TODO: Replace with actual store URLs
+    const IOS_STORE_URL = '';
+    const ANDROID_STORE_URL = '';
+
+    function openInApp() {
+      document.getElementById('status').textContent = 'Opening Mizos...';
+      window.location.href = deepLink;
+
+      setTimeout(function() {
+        document.getElementById('status').textContent = "Don't have the app yet?";
+        var storeUrl = isIos ? IOS_STORE_URL : ANDROID_STORE_URL;
+        if (storeUrl) {
+          var storeBtn = document.getElementById('storeBtn');
+          storeBtn.style.display = 'block';
+          storeBtn.href = storeUrl;
+          storeBtn.textContent = isIos ? 'Download for iPhone' : 'Download for Android';
+        } else {
+          document.getElementById('status').textContent = 'Search "Mizos" on your app store to save these measurements.';
+        }
+      }, 1500);
+    }
+  </script>
+</body>
+</html>

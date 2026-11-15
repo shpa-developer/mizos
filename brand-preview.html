@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mizos — Brand Theme</title>
+<style>
+  :root {
+    --primary: #1A1A1A;
+    --accent: #2D5BE3;
+    --accent-light: #EEF2FF;
+    --background: #F5F5F5;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-secondary: #6B6B6B;
+    --border: #E5E5E5;
+    --danger: #EF4444;
+    --success: #22C55E;
+    --radius-card: 12px;
+    --radius-btn: 8px;
+    --spacing: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+  h2 { font-size: 20px; font-weight: 600; margin: 40px 0 16px; color: var(--text-secondary); letter-spacing: 0.5px; text-transform: uppercase; font-size: 13px; }
+  h3 { font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+
+  .tagline { color: var(--text-secondary); font-size: 16px; margin-bottom: 40px; }
+
+  /* ── Logo / Splash ── */
+  .splash-preview {
+    background: var(--primary);
+    border-radius: var(--radius-card);
+    padding: 60px 40px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .splash-preview .logo { font-size: 42px; font-weight: 700; color: #fff; letter-spacing: -1px; }
+  .splash-preview .logo span { color: var(--accent); }
+  .splash-preview .sub { color: rgba(255,255,255,0.5); font-size: 14px; margin-top: 8px; }
+
+  /* ── Color Swatches ── */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+  .swatch {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+  .swatch-color { height: 72px; }
+  .swatch-info { padding: 10px 12px; }
+  .swatch-name { font-size: 13px; font-weight: 600; }
+  .swatch-hex { font-size: 12px; color: var(--text-secondary); font-family: 'SF Mono', 'Fira Code', monospace; }
+
+  /* ── Typography ── */
+  .type-row { margin-bottom: 16px; }
+  .type-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; font-family: monospace; }
+  .type-title { font-size: 24px; font-weight: 700; }
+  .type-subtitle { font-size: 18px; font-weight: 600; }
+  .type-body { font-size: 16px; }
+  .type-caption { font-size: 14px; color: var(--text-secondary); }
+
+  /* ── Components ── */
+  .components { display: flex; flex-direction: column; gap: 16px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: var(--spacing);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: var(--radius-btn);
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    gap: 8px;
+  }
+  .btn-accent { background: var(--accent); color: #fff; }
+  .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+  .btn-danger { background: var(--danger); color: #fff; }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-btn);
+    padding: 12px;
+    font-size: 16px;
+    color: var(--text);
+    width: 100%;
+    max-width: 320px;
+    outline: none;
+    font-family: inherit;
+  }
+  .input:focus { border-color: var(--accent); }
+  .input-label { font-size: 14px; font-weight: 500; margin-bottom: 6px; color: var(--text); }
+
+  /* ── Tag / Badge ── */
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+
+  /* ── Profile Card Mock ── */
+  .profile-card { display: flex; align-items: center; gap: 14px; }
+  .avatar {
+    width: 48px; height: 48px; border-radius: 24px;
+    background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .profile-name { font-size: 16px; font-weight: 600; }
+  .profile-meta { font-size: 14px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* ── Measurement Card Mock ── */
+  .measure-card { display: flex; gap: 14px; align-items: flex-start; }
+  .measure-icon { font-size: 28px; flex-shrink: 0; }
+  .measure-info { flex: 1; }
+  .measure-title-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .measure-title { font-size: 16px; font-weight: 600; }
+  .measure-summary { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .measure-share { color: var(--text-secondary); cursor: pointer; align-self: center; font-size: 18px; }
+
+  /* ── Chip Select ── */
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    padding: 8px 14px;
+    border-radius: var(--radius-btn);
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .chip.selected {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ── Status ── */
+  .status-row { display: flex; gap: 12px; align-items: center; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .status-label { font-size: 14px; }
+
+  /* ── Phone Frame ── */
+  .phone-frame {
+    width: 280px;
+    background: var(--background);
+    border-radius: 32px;
+    border: 3px solid var(--primary);
+    padding: 16px 12px;
+    margin: 0 auto;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .phone-header {
+    text-align: center;
+    padding: 12px 0 8px;
+  }
+  .phone-header h3 { font-size: 17px; font-weight: 600; }
+  .phone-tab-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 4px;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+  .phone-tab {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+  .phone-tab.active { color: var(--accent); }
+  .phone-tab .tab-icon { font-size: 20px; display: block; margin-bottom: 2px; }
+
+  .mini-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mini-avatar {
+    width: 36px; height: 36px; border-radius: 18px;
+    background: var(--accent-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--accent);
+    flex-shrink: 0;
+  }
+  .mini-name { font-size: 14px; font-weight: 600; }
+  .mini-meta { font-size: 12px; color: var(--text-secondary); }
+
+  section { margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<h1>Mizos</h1>
+<p class="tagline">Your measurements, always handy &mdash; mizos.in</p>
+
+<!-- Splash -->
+<h2>Splash Screen</h2>
+<div class="splash-preview">
+  <div class="logo">mizo<span>s</span></div>
+  <div class="sub">mizos.in</div>
+</div>
+
+<!-- Colors -->
+<h2>Colors</h2>
+<div class="swatches">
+  <div class="swatch"><div class="swatch-color" style="background:#1A1A1A"></div><div class="swatch-info"><div class="swatch-name">Primary</div><div class="swatch-hex">#1A1A1A</div></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#2D5BE3"></div><div class="swatch-info"><div class="swatch-name">Accent</div><div class="swatch-hex">#2D5BE3</div></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#EEF2FF"></div><div class="swatch-info"><div class="swatch-name">Accent Light</div><div class="swatch-hex">#EEF2FF</div></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#F5F5F5"></div><div class="swatch-info"><div class="swatch-name">Background</div><div class="swatch-hex">#F5F5F5</div></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border-bottom: 1px solid #E5E5E5"></div><div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#FFFFFF</div></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#E5E5E5"></div><div class="swatch-info"><div class="swatch-name">Border</div><div class="swatch-hex">#E5E5E5</div></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#6B6B6B"></div><div class="swatch-info"><div class="swatch-name">Text Secondary</div><div class="swatch-hex">#6B6B6B</div></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#22C55E"></div><div class="swatch-info"><div class="swatch-name">Success</div><div class="swatch-hex">#22C55E</div></div></div>
+  <div class="swatch"><div class="swatch-color" style="background:#EF4444"></div><div class="swatch-info"><div class="swatch-name">Danger</div><div class="swatch-hex">#EF4444</div></div></div>
+</div>
+
+<!-- Typography -->
+<h2>Typography</h2>
+<div class="card">
+  <div class="type-row"><div class="type-label">Title — 24px / 700</div><div class="type-title">Your measurements</div></div>
+  <div class="type-row"><div class="type-label">Subtitle — 18px / 600</div><div class="type-subtitle">Body Measurements</div></div>
+  <div class="type-row"><div class="type-label">Body — 16px / 400</div><div class="type-body">Chest: 40 in &middot; Waist: 34 in &middot; Shoulder: 18 in</div></div>
+  <div class="type-row"><div class="type-label">Caption — 14px / 400</div><div class="type-caption">Last updated 2 days ago</div></div>
+  <div class="type-row"><div class="type-label">Tabular values — monospace</div><div style="font-family: 'SF Mono', 'Fira Code', monospace; font-size: 16px;">40 &nbsp; 34 &nbsp; 18 &nbsp; 29 &nbsp; 24</div></div>
+</div>
+
+<!-- Buttons -->
+<h2>Buttons</h2>
+<div class="card">
+  <div class="btn-row">
+    <button class="btn btn-accent">Save Profile</button>
+    <button class="btn btn-outline">Share</button>
+    <button class="btn btn-danger">Delete</button>
+  </div>
+</div>
+
+<!-- Inputs -->
+<h2>Inputs</h2>
+<div class="card">
+  <div class="input-label">Profile Name</div>
+  <input class="input" placeholder="e.g. Paras" value="Paras Jindal">
+  <div style="height: 16px;"></div>
+  <div class="input-label">Unit</div>
+  <div class="chips">
+    <div class="chip selected">Inches</div>
+    <div class="chip">CM</div>
+  </div>
+</div>
+
+<!-- Tags -->
+<h2>Tags &amp; Badges</h2>
+<div class="card" style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+  <span class="tag">T-Shirt</span>
+  <span class="tag">Formal Shirt</span>
+  <span class="tag">Custom</span>
+  <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; padding: 3px 8px; border-radius: 4px; background: #DCFCE7; color: #16A34A; font-weight: 600;">Saved</span>
+  <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; padding: 3px 8px; border-radius: 4px; background: #FEE2E2; color: #EF4444; font-weight: 600;">Missing</span>
+</div>
+
+<!-- Profile Card -->
+<h2>Profile Card</h2>
+<div class="card">
+  <div class="profile-card">
+    <div class="avatar">PJ</div>
+    <div>
+      <div class="profile-name">Paras Jindal</div>
+      <div class="profile-meta">3 measurements saved</div>
+    </div>
+  </div>
+</div>
+
+<!-- Measurement Card -->
+<h2>Measurement Card</h2>
+<div class="card">
+  <div class="measure-card">
+    <div class="measure-icon">👕</div>
+    <div class="measure-info">
+      <div class="measure-title-row">
+        <div class="measure-title">T-Shirt</div>
+        <span class="tag">Casual</span>
+      </div>
+      <div class="measure-summary">Chest: 40 in &middot; Waist: 34 in &middot; Shoulder: 18 in &middot; Length: 29 in</div>
+    </div>
+    <div class="measure-share">&#8599;</div>
+  </div>
+</div>
+
+<!-- App Preview -->
+<h2>App Preview</h2>
+<div style="display: flex; justify-content: center;">
+  <div class="phone-frame">
+    <div class="phone-header">
+      <h3>Mizos</h3>
+    </div>
+
+    <div class="mini-card">
+      <div class="mini-avatar">PJ</div>
+      <div><div class="mini-name">Paras Jindal</div><div class="mini-meta">5 measurements</div></div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-avatar">RK</div>
+      <div><div class="mini-name">Rohit Kumar</div><div class="mini-meta">3 measurements</div></div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-avatar">AS</div>
+      <div><div class="mini-name">Anita Sharma</div><div class="mini-meta">2 measurements</div></div>
+    </div>
+    <div class="mini-card" style="border: 1.5px dashed var(--border); background: transparent; justify-content: center; color: var(--text-secondary); font-size: 14px;">
+      + Add Profile
+    </div>
+
+    <div class="phone-tab-bar">
+      <div class="phone-tab active"><span class="tab-icon">&#128101;</span>Profiles</div>
+      <div class="phone-tab"><span class="tab-icon">&#9881;</span>Settings</div>
+    </div>
+  </div>
+</div>
+
+<!-- Share Message Preview -->
+<h2>Share Message Preview</h2>
+<div class="card" style="background: #DCF8C6; max-width: 360px; border: none; border-radius: 8px; font-size: 14px; line-height: 1.6;">
+  <strong>Paras's Measurements</strong><br><br>
+  Chest: 40 in<br>
+  Waist: 34 in<br>
+  Shoulder: 18 in<br>
+  Shirt Length: 29 in<br>
+  Sleeve: 24 in<br><br>
+  <span style="color: var(--accent); text-decoration: underline;">https://mizos.in/m?n=Paras&c=40&w=34&s=18&sl=29&sv=24</span>
+</div>
+
+</body>
+</html>
