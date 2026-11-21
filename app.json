@@ -2,7 +2,7 @@
   "expo": {
     "name": "Mizos",
     "slug": "mizos",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -13,20 +13,24 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "in.mizos.app",
+      "bundleIdentifier": "in.mizos.measurements",
       "infoPlist": {
         "NSContactsUsageDescription": "Access contacts to link profiles with phone contacts"
       }
     },
     "android": {
-      "package": "in.mizos.app",
+      "package": "in.mizos.measurements",
+      "versionCode": 2,
       "adaptiveIcon": {
         "backgroundColor": "#1A1A1A",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "permissions": ["android.permission.READ_CONTACTS"],
+      "permissions": [
+        "android.permission.READ_CONTACTS",
+        "android.permission.WRITE_CONTACTS"
+      ],
       "predictiveBackGestureEnabled": false
     },
     "web": {
@@ -34,6 +38,7 @@
     },
     "scheme": "mizos",
     "plugins": [
+      "./plugins/withPortraitNotRequired",
       "expo-sqlite",
       "expo-router",
       "expo-status-bar",
@@ -43,6 +48,16 @@
           "contactsPermission": "Allow $(PRODUCT_NAME) to access your contacts to link profiles."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "d7442dcb-2561-4fa2-ac41-433a8043b40d"
+      }
+    }
   }
 }
