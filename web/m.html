@@ -6,6 +6,12 @@
   <title>Mizos — Shared Measurements</title>
   <meta name="description" content="View and save shared body measurements">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-567WPRJF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
   <style>
     :root {
       --primary: #1A1A1A;
@@ -156,6 +162,7 @@
 
     <div class="actions">
       <button class="btn btn-accent" id="openApp" onclick="openInApp()">Save in Mizos</button>
+      <button class="btn btn-secondary" id="copyBtn" onclick="copyMeasurements()">Copy to clipboard</button>
       <a class="btn btn-secondary" id="storeBtn" href="#" style="display:none">Get the app</a>
       <p class="status" id="status"></p>
     </div>
@@ -187,7 +194,10 @@
     document.getElementById('title').textContent = title;
 
     if (label && label !== categoryLabel) {
-      document.getElementById('tagContainer').innerHTML = '<span class="tag">' + label + '</span>';
+      var tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.textContent = label;
+      document.getElementById('tagContainer').appendChild(tag);
     }
 
     const fieldsEl = document.getElementById('fields');
@@ -198,12 +208,38 @@
       const fieldName = key.slice(2).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
       const div = document.createElement('div');
       div.className = 'field';
-      div.innerHTML = '<span class="field-label">' + fieldName + '</span><span class="field-value">' + value + '</span>';
+      const nameEl = document.createElement('span');
+      nameEl.className = 'field-label';
+      nameEl.textContent = fieldName;
+      const valueEl = document.createElement('span');
+      valueEl.className = 'field-value';
+      valueEl.textContent = value;
+      div.appendChild(nameEl);
+      div.appendChild(valueEl);
       fieldsEl.appendChild(div);
     }
 
     if (fieldCount === 0) {
       document.getElementById('empty').style.display = 'block';
+      document.getElementById('copyBtn').style.display = 'none';
+    }
+
+    function copyMeasurements() {
+      var lines = [];
+      if (profileName) lines.push(profileName + ' — ' + (categoryLabel || 'Measurements'));
+      else if (categoryLabel) lines.push(categoryLabel);
+      if (label && label !== categoryLabel) lines.push(label);
+      lines.push('');
+      for (var [key, value] of params.entries()) {
+        if (!key.startsWith('f_')) continue;
+        var name = key.slice(2).replace(/_/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+        lines.push(name + ': ' + value);
+      }
+      navigator.clipboard.writeText(lines.join('\n')).then(function() {
+        var btn = document.getElementById('copyBtn');
+        btn.textContent = 'Copied!';
+        setTimeout(function() { btn.textContent = 'Copy to clipboard'; }, 2000);
+      });
     }
 
     const deepLink = 'mizos:///import?' + params.toString();

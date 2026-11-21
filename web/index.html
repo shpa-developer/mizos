@@ -3,9 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mizos — Your measurements, always handy</title>
-  <meta name="description" content="Store body measurements for your whole family. Share with tailors instantly via WhatsApp. Free, offline, no account needed.">
+  <title>Mizos - Body Measurement App | Save & Share Sizes</title>
+  <meta name="description" content="Save body measurements for your whole family and share with tailors instantly. Free tailor measurement app — works offline, no account needed.">
+  <meta name="robots" content="index, follow">
+  <meta name="keywords" content="body measurement app, tailor measurement app, save measurements app, body size tracker, share measurements with tailor">
+  <link rel="canonical" href="https://mizos.in/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mizos.in/">
+  <meta property="og:title" content="Mizos - Body Measurement App | Save & Share Sizes">
+  <meta property="og:description" content="Save body measurements for your whole family and share with tailors instantly. Free, offline, no account needed.">
+  <meta property="og:site_name" content="Mizos">
+  <meta property="og:image" content="https://mizos.in/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mizos - Body Measurement App | Save & Share Sizes">
+  <meta name="twitter:description" content="Save body measurements for your whole family and share with tailors instantly. Free, offline, no account needed.">
+  <meta name="twitter:image" content="https://mizos.in/og-image.png">
+
+  <!-- Structured Data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Mizos",
+    "description": "Body measurement app to save and share measurements with tailors. Store sizes for your whole family — shirts, pants, suits, shoes, rings, and more.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Android, iOS",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "INR"
+    },
+    "inLanguage": ["en", "hi", "pa", "mr", "bn", "kn", "gu"]
+  }
+  </script>
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Mizos",
+    "url": "https://mizos.in",
+    "logo": "https://mizos.in/icon.svg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@mizos.in",
+      "contactType": "customer support"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://mizos.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://mizos.in/blog"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Mizos free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Mizos is completely free to download and use. There are no in-app purchases, subscriptions, or hidden charges. All features are available at no cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need an account to use Mizos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Mizos works without any sign-up or account creation. All your measurement data is stored locally on your device. Just install and start saving measurements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I share measurements with my tailor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tap the share button on any measurement, and send it via WhatsApp or any messaging app. Your tailor receives a clean, formatted message with all the numbers plus a link to view them on the web. No app needed on their end."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What measurements can I save in the app?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mizos has pre-built templates for T-shirts, shirts, suits/blazers, pants, shoes, eyeglasses, rings, bangles, and general body measurements. Each template includes the right fields for that category."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Mizos work without internet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All measurement data is stored locally on your phone using on-device storage. You can add, edit, and view measurements without any internet connection. You only need internet when you choose to share measurements via messaging apps."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-567WPRJF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
   <style>
     :root {
       --primary: #1A1A1A;
@@ -32,19 +162,27 @@
       text-align: center;
       padding: 80px 24px 60px;
     }
-    .hero .brand {
+    .hero h1.brand {
       font-size: 48px;
       font-weight: 700;
       letter-spacing: -1px;
       margin-bottom: 16px;
     }
-    .hero .brand span { color: var(--accent); margin-left: -1px; }
+    .hero h1.brand span { color: var(--accent); margin-left: -1px; }
     .hero .tagline {
       font-size: 20px;
       color: rgba(255,255,255,0.6);
       max-width: 400px;
+      margin: 0 auto 12px;
+      line-height: 1.5;
+    }
+    .hero .hero-subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.4);
+      max-width: 400px;
       margin: 0 auto 40px;
       line-height: 1.5;
+      font-weight: 400;
     }
     .hero .cta-row {
       display: flex;
@@ -52,6 +190,14 @@
       justify-content: center;
       flex-wrap: wrap;
     }
+    .hero .hero-note {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+    .hero .hero-note a { color: rgba(255,255,255,0.75); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.25); white-space: nowrap; }
+    .hero .hero-note a:hover { color: #fff; }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -173,6 +319,36 @@
       font-weight: 500;
     }
 
+    /* ── FAQ ── */
+    .faq {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    .faq h2 {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+    }
+    .faq-item:first-of-type {
+      border-top: 1px solid var(--border);
+    }
+    .faq-q {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .faq-a {
+      font-size: 14px;
+      color: var(--text-sec);
+      line-height: 1.6;
+    }
+
     /* ── CTA ── */
     .cta-section {
       text-align: center;
@@ -194,7 +370,7 @@
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .hero { padding: 60px 20px 48px; }
-      .hero .brand { font-size: 36px; }
+      .hero h1.brand { font-size: 36px; }
       .hero .tagline { font-size: 17px; }
       .share-inner { flex-direction: column; text-align: center; }
       .share-mock { max-width: 100%; }
@@ -205,12 +381,14 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="brand">mizo<span>s</span></div>
+    <h1 class="brand">mizo<span>s</span></h1>
     <p class="tagline">Your measurements, always handy. Store sizes for your whole family. Share with tailors in one tap.</p>
+    <h2 class="hero-subtitle">The body measurement app for families and tailors</h2>
     <div class="cta-row">
       <a class="btn btn-accent" href="#" id="downloadBtn">Download App</a>
-      <a class="btn btn-outline" href="#how">How it works</a>
+      <a class="btn btn-outline" href="/create">Create a measurement link</a>
     </div>
+    <p class="hero-note">No install needed — build a link in your browser &middot; <a href="#how">How it works</a></p>
   </section>
 
   <!-- Features -->
@@ -218,32 +396,32 @@
     <h2>Why Mizos?</h2>
     <div class="feature-grid">
       <div class="feature-card">
-        <div class="feature-icon">👨‍👩‍👧‍👦</div>
+        <div class="feature-icon" role="img" aria-label="Family">👨‍👩‍👧‍👦</div>
         <div class="feature-title">Family profiles</div>
         <div class="feature-desc">Store measurements for everyone — yourself, spouse, kids, parents. All in one place.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📤</div>
+        <div class="feature-icon" role="img" aria-label="Share">📤</div>
         <div class="feature-title">Instant sharing</div>
         <div class="feature-desc">Share measurements via WhatsApp or any app. Your tailor sees the data instantly — no app needed on their end.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📱</div>
+        <div class="feature-icon" role="img" aria-label="Mobile phone">📱</div>
         <div class="feature-title">Works offline</div>
         <div class="feature-desc">All data stored on your phone. No internet needed, no account required, no cloud sync to worry about.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🌐</div>
+        <div class="feature-icon" role="img" aria-label="Globe">🌐</div>
         <div class="feature-title">7 languages</div>
         <div class="feature-desc">Available in English, Hindi, Punjabi, Marathi, Bengali, Kannada, and Gujarati.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📏</div>
-        <div class="feature-title">Every category</div>
+        <div class="feature-icon" role="img" aria-label="Ruler">📏</div>
+        <div class="feature-title">Save measurements for everything</div>
         <div class="feature-desc">T-shirts, shirts, pants, suits, shoes, rings, bangles, eyeglasses, and body measurements.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🔒</div>
+        <div class="feature-icon" role="img" aria-label="Lock">🔒</div>
         <div class="feature-title">Private by default</div>
         <div class="feature-desc">Your data never leaves your phone unless you choose to share it. No servers, no tracking.</div>
       </div>
@@ -297,6 +475,31 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="faq-item">
+      <div class="faq-q">Is Mizos free?</div>
+      <div class="faq-a">Yes, Mizos is completely free to download and use. There are no in-app purchases, subscriptions, or hidden charges. All features are available at no cost.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Do I need an account to use Mizos?</div>
+      <div class="faq-a">No. Mizos works without any sign-up or account creation. All your measurement data is stored locally on your device. Just install and start saving measurements.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">How do I share measurements with my tailor?</div>
+      <div class="faq-a">Tap the share button on any measurement, and send it via WhatsApp or any messaging app. Your tailor receives a clean, formatted message with all the numbers plus a link to view them on the web. No app needed on their end.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What measurements can I save in the app?</div>
+      <div class="faq-a">Mizos has pre-built templates for T-shirts, shirts, suits/blazers, pants, shoes, eyeglasses, rings, bangles, and general body measurements. Each template includes the right fields for that category.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Does Mizos work without internet?</div>
+      <div class="faq-a">Yes. All measurement data is stored locally on your phone using on-device storage. You can add, edit, and view measurements without any internet connection. You only need internet when you choose to share measurements via messaging apps.</div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section">
     <h2>Stop texting your tailor the wrong size</h2>
@@ -305,11 +508,12 @@
       <a class="btn btn-accent" href="#" id="downloadBtn2">Download for Android</a>
       <a class="btn" href="#" id="downloadBtn3" style="background:var(--primary);color:#fff;">Download for iPhone</a>
     </div>
+    <p style="margin-top:20px;margin-bottom:0;">Or <a href="/create" style="color:var(--accent);font-weight:600;text-decoration:none;">create a measurement link</a> without installing.</p>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>mizo<span style="color:var(--accent);font-weight:700;">s</span> &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="mailto:hello@mizos.in">Contact</a></p>
+    <p>mizo<span style="color:var(--accent);font-weight:700;">s</span> &middot; <a href="/create">Create a link</a> &middot; <a href="/blog">Blog</a> &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="mailto:hello@mizos.in">Contact</a></p>
     <p style="margin-top:8px;">&copy; 2024 Mizos. All rights reserved.</p>
   </footer>
 

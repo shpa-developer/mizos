@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create a Measurement Link | Mizos</title>
+  <meta name="description" content="Free tool to create a shareable measurement link. Pick a template, enter measurements, and send them to your tailor on WhatsApp — no app or sign-up needed.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mizos.in/create">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mizos.in/create">
+  <meta property="og:title" content="Create a Measurement Link | Mizos">
+  <meta property="og:description" content="Pick a template, enter measurements, and share a clean link with your tailor on WhatsApp. Free, no sign-up.">
+  <meta property="og:site_name" content="Mizos">
+  <meta property="og:image" content="https://mizos.in/og-image.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Create a Measurement Link | Mizos">
+  <meta name="twitter:description" content="Pick a template, enter measurements, and share a clean link with your tailor on WhatsApp.">
+  <meta name="twitter:image" content="https://mizos.in/og-image.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mizos Measurement Link Generator",
+    "url": "https://mizos.in/create",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "description": "Create a shareable measurement link from a template and send it to your tailor.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }
+  }
+  </script>
+
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-567WPRJF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <style>
+    :root {
+      --primary: #1A1A1A;
+      --accent: #2D5BE3;
+      --accent-light: #EEF2FF;
+      --bg: #F5F5F5;
+      --surface: #FFFFFF;
+      --text: #1A1A1A;
+      --text-sec: #6B6B6B;
+      --border: #E5E5E5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .header { background: var(--primary); padding: 20px 24px; text-align: center; }
+    .header a {
+      font-size: 24px; font-weight: 700; text-decoration: none;
+      color: #fff; letter-spacing: -0.5px;
+    }
+    .header a span { color: var(--accent); }
+
+    .wrap { max-width: 980px; margin: 0 auto; padding: 40px 24px 64px; }
+    .page-head { text-align: center; margin-bottom: 36px; }
+    .page-head h1 { font-size: 30px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.5px; }
+    .page-head p { font-size: 15px; color: var(--text-sec); line-height: 1.6; max-width: 540px; margin: 0 auto; }
+
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .card + .card { margin-top: 24px; }
+    .card h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-sec); margin-bottom: 16px; }
+
+    label.fl { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .hint { font-size: 12px; color: var(--text-sec); margin-top: 6px; line-height: 1.5; }
+
+    input[type="text"], input[type="number"], select {
+      width: 100%;
+      padding: 11px 12px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 18px;
+      padding-right: 34px;
+    }
+    input:focus, select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+
+    /* template picker */
+    .tpl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+    .tpl {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 6px;
+      text-align: center;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .tpl .emo { display: block; font-size: 24px; margin-bottom: 6px; }
+    .tpl:hover { border-color: #C9C9C9; }
+    .tpl[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+
+    /* unit toggle */
+    .unit-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .seg { display: inline-flex; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 2px; }
+    .seg button {
+      border: none; background: transparent; font-family: inherit; font-size: 13px; font-weight: 600;
+      color: var(--text-sec); padding: 7px 16px; border-radius: 6px; cursor: pointer;
+    }
+    .seg button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
+
+    /* fields */
+    .field-row { margin-bottom: 14px; }
+    .field-row:last-child { margin-bottom: 0; }
+    .with-unit { position: relative; }
+    .with-unit .unit {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      font-size: 13px; color: var(--text-sec); pointer-events: none; font-weight: 500;
+    }
+    .with-unit input { padding-right: 46px; }
+
+    .stepper { display: flex; gap: 8px; align-items: center; }
+    .stepper input { text-align: center; }
+    .stepper button {
+      flex-shrink: 0; width: 42px; height: 42px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg);
+      font-size: 20px; font-weight: 600; color: var(--text); cursor: pointer; font-family: inherit;
+      line-height: 1;
+    }
+    .stepper button:hover { border-color: #C9C9C9; }
+
+    /* preview */
+    .preview {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 14px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      min-height: 96px;
+      font-family: inherit;
+    }
+    .preview.empty { color: var(--text-sec); }
+    .link-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      line-height: 1.5;
+      word-break: break-all;
+      color: var(--text-sec);
+      max-height: 120px;
+      overflow-y: auto;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: block; width: 100%; padding: 13px;
+      border-radius: 8px; font-size: 15px; font-weight: 600;
+      text-align: center; text-decoration: none; cursor: pointer;
+      border: none; font-family: inherit;
+    }
+    .btn + .btn { margin-top: 10px; }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-wa { background: #25D366; color: #fff; }
+    .btn-secondary { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .status { font-size: 13px; color: var(--text-sec); text-align: center; margin-top: 12px; min-height: 18px; }
+
+    .note {
+      font-size: 13px; color: var(--text-sec); line-height: 1.6;
+      background: var(--accent-light); border-radius: 8px; padding: 12px 14px; margin-top: 20px;
+    }
+    .note a { color: var(--accent); }
+
+    footer {
+      text-align: center; padding: 32px 24px; font-size: 13px;
+      color: var(--text-sec); border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    @media (max-width: 760px) {
+      .cols { grid-template-columns: 1fr; }
+      .wrap { padding: 28px 16px 48px; }
+      .page-head h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="/">mizo<span>s</span></a>
+  </div>
+
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Create a measurement link</h1>
+      <p>Pick a template, fill in the numbers, and get a ready-to-send message plus a link your tailor can open in any browser. Nothing is uploaded — the measurements live inside the link itself.</p>
+    </div>
+
+    <div class="cols">
+      <!-- ── Left: form ── -->
+      <div>
+        <div class="card">
+          <h2>1 · Who is it for</h2>
+          <label class="fl" for="profileName">Profile name</label>
+          <input type="text" id="profileName" placeholder="e.g. Rohan" autocomplete="name" maxlength="60">
+          <p class="hint">Shown as "Rohan's Shirt measurements" in the message. Optional.</p>
+        </div>
+
+        <div class="card">
+          <h2>2 · Pick a template</h2>
+          <div class="tpl-grid" id="tplGrid"></div>
+        </div>
+
+        <div class="card" id="fieldsCard">
+          <h2>3 · Measurements</h2>
+          <div class="unit-row" id="unitRow">
+            <span style="font-size:13px;font-weight:600;">Units</span>
+            <div class="seg" role="group" aria-label="Unit">
+              <button type="button" id="unitIn" aria-pressed="true">Inches</button>
+              <button type="button" id="unitCm" aria-pressed="false">cm</button>
+            </div>
+          </div>
+          <div id="fields"></div>
+          <div class="field-row" style="margin-top:18px;">
+            <label class="fl" for="customLabel">Label <span style="font-weight:400;color:var(--text-sec);">(optional)</span></label>
+            <input type="text" id="customLabel" placeholder="e.g. Wedding kurta" maxlength="60">
+            <p class="hint">Use this to tell two entries apart — "Office shirt" vs "Wedding kurta".</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Right: preview + actions ── -->
+      <div>
+        <div class="card">
+          <h2>Message preview</h2>
+          <div class="preview empty" id="preview">Pick a template and enter at least one measurement.</div>
+          <div class="link-box" id="linkBox" style="display:none;"></div>
+        </div>
+
+        <div class="card">
+          <h2>Share</h2>
+          <button class="btn btn-wa" id="waBtn" disabled>Send on WhatsApp</button>
+          <button class="btn btn-accent" id="shareBtn" disabled style="display:none;">Share…</button>
+          <button class="btn btn-secondary" id="copyMsgBtn" disabled>Copy message</button>
+          <button class="btn btn-secondary" id="copyLinkBtn" disabled>Copy link only</button>
+          <a class="btn btn-secondary" id="openBtn" href="#" style="display:none;">Open the link</a>
+          <p class="status" id="status"></p>
+          <div class="note">
+            Saving measurements often? The <a href="/">Mizos app</a> keeps profiles for your whole family on your phone and shares them in one tap — free, offline, no account.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p><a href="/">mizos.in</a> &middot; <a href="/blog">Blog</a> &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="mailto:hello@mizos.in">Contact</a></p>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var SIZES = ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL'];
+
+    var CATEGORIES = [
+      { slug: 'tshirt', label: 'T-Shirt', emoji: '👕' },
+      { slug: 'shirt', label: 'Shirt', emoji: '👔' },
+      { slug: 'suit', label: 'Suit / Blazer', emoji: '🤵' },
+      { slug: 'pant', label: 'Pant', emoji: '👖' },
+      { slug: 'shoes', label: 'Shoes', emoji: '👟' },
+      { slug: 'eyeglasses', label: 'Eyeglasses', emoji: '👓' },
+      { slug: 'ring', label: 'Ring', emoji: '💍' },
+      { slug: 'bangles', label: 'Bangles', emoji: '⭕' },
+      { slug: 'body', label: 'Body', emoji: '📏' }
+    ];
+
+    var CATEGORY_FIELDS = {
+      tshirt: [
+        { key: 'size', label: 'Size', unit: '', type: 'select', options: SIZES },
+        { key: 'chest', label: 'Chest', unit: 'in', type: 'number' },
+        { key: 'length', label: 'Length', unit: 'in', type: 'number' }
+      ],
+      shirt: [
+        { key: 'size', label: 'Size', unit: '', type: 'select', options: SIZES },
+        { key: 'chest', label: 'Chest', unit: 'in', type: 'number' },
+        { key: 'length', label: 'Length', unit: 'in', type: 'number' }
+      ],
+      suit: [
+        { key: 'size', label: 'Size', unit: '', type: 'select', options: SIZES },
+        { key: 'chest', label: 'Chest', unit: 'in', type: 'number' },
+        { key: 'shoulder', label: 'Shoulder', unit: 'in', type: 'number' },
+        { key: 'sleeve', label: 'Sleeve Length', unit: 'in', type: 'number' },
+        { key: 'jacket_length', label: 'Jacket Length', unit: 'in', type: 'number' },
+        { key: 'waist', label: 'Waist', unit: 'in', type: 'number' }
+      ],
+      pant: [
+        { key: 'waist', label: 'Waist', unit: 'in', type: 'number' },
+        { key: 'hip', label: 'Hip', unit: 'in', type: 'number' },
+        { key: 'thigh', label: 'Thigh', unit: 'in', type: 'number' },
+        { key: 'knee', label: 'Knee', unit: 'in', type: 'number' },
+        { key: 'crotch', label: 'Crotch', unit: 'in', type: 'number' },
+        { key: 'inseam', label: 'Inseam', unit: 'in', type: 'number' },
+        { key: 'length', label: 'Length', unit: 'in', type: 'number' },
+        { key: 'leg_opening', label: 'Leg Opening', unit: 'in', type: 'number' }
+      ],
+      shoes: [
+        { key: 'size', label: 'Size', unit: 'UK', type: 'number' }
+      ],
+      eyeglasses: [
+        { key: 'sph_left', label: 'SPH (Left)', unit: '', type: 'stepper', step: 0.25 },
+        { key: 'sph_right', label: 'SPH (Right)', unit: '', type: 'stepper', step: 0.25 },
+        { key: 'cyl_left', label: 'CYL (Left)', unit: '', type: 'stepper', step: 0.25 },
+        { key: 'cyl_right', label: 'CYL (Right)', unit: '', type: 'stepper', step: 0.25 }
+      ],
+      ring: [
+        { key: 'size', label: 'Size', unit: '', type: 'number' }
+      ],
+      bangles: [
+        { key: 'size', label: 'Size', unit: '', type: 'number' }
+      ],
+      body: [
+        { key: 'height', label: 'Height', unit: 'in', type: 'number' },
+        { key: 'weight', label: 'Weight', unit: 'kg', type: 'number' },
+        { key: 'chest', label: 'Chest', unit: 'in', type: 'number' },
+        { key: 'waist', label: 'Waist', unit: 'in', type: 'number' },
+        { key: 'hips', label: 'Hips', unit: 'in', type: 'number' },
+        { key: 'shoulder', label: 'Shoulder', unit: 'in', type: 'number' },
+        { key: 'inseam', label: 'Inseam', unit: 'in', type: 'number' },
+        { key: 'neck', label: 'Neck', unit: 'in', type: 'number' }
+      ]
+    };
+
+    var BASE_URL = 'https://mizos.in';
+
+    var selectedSlug = null;
+    var lengthUnit = 'in';
+    var values = {};
+
+    var el = {
+      tplGrid: document.getElementById('tplGrid'),
+      fields: document.getElementById('fields'),
+      fieldsCard: document.getElementById('fieldsCard'),
+      unitRow: document.getElementById('unitRow'),
+      unitIn: document.getElementById('unitIn'),
+      unitCm: document.getElementById('unitCm'),
+      profileName: document.getElementById('profileName'),
+      customLabel: document.getElementById('customLabel'),
+      preview: document.getElementById('preview'),
+      linkBox: document.getElementById('linkBox'),
+      waBtn: document.getElementById('waBtn'),
+      shareBtn: document.getElementById('shareBtn'),
+      copyMsgBtn: document.getElementById('copyMsgBtn'),
+      copyLinkBtn: document.getElementById('copyLinkBtn'),
+      openBtn: document.getElementById('openBtn'),
+      status: document.getElementById('status')
+    };
+
+    function category() {
+      for (var i = 0; i < CATEGORIES.length; i++) {
+        if (CATEGORIES[i].slug === selectedSlug) return CATEGORIES[i];
+      }
+      return null;
+    }
+
+    // Length fields are the only ones that switch between in and cm.
+    function unitFor(field) {
+      return field.unit === 'in' ? lengthUnit : field.unit;
+    }
+
+    // ── Template picker ──
+    CATEGORIES.forEach(function (cat) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'tpl';
+      b.setAttribute('aria-pressed', 'false');
+      b.dataset.slug = cat.slug;
+      var emo = document.createElement('span');
+      emo.className = 'emo';
+      emo.setAttribute('role', 'img');
+      emo.setAttribute('aria-label', cat.label);
+      emo.textContent = cat.emoji;
+      b.appendChild(emo);
+      b.appendChild(document.createTextNode(cat.label));
+      b.addEventListener('click', function () { selectTemplate(cat.slug); });
+      el.tplGrid.appendChild(b);
+    });
+
+    function selectTemplate(slug) {
+      if (selectedSlug === slug) return;
+      selectedSlug = slug;
+      values = {};
+      el.customLabel.value = '';
+      var btns = el.tplGrid.querySelectorAll('.tpl');
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].setAttribute('aria-pressed', btns[i].dataset.slug === slug ? 'true' : 'false');
+      }
+      renderFields();
+      update();
+    }
+
+    function renderFields() {
+      el.fields.textContent = '';
+      var defs = CATEGORY_FIELDS[selectedSlug] || [];
+
+      var hasLengthField = defs.some(function (f) { return f.unit === 'in'; });
+      el.unitRow.style.display = hasLengthField ? 'flex' : 'none';
+
+      defs.forEach(function (f) {
+        var row = document.createElement('div');
+        row.className = 'field-row';
+
+        var lab = document.createElement('label');
+        lab.className = 'fl';
+        lab.setAttribute('for', 'f_' + f.key);
+        lab.textContent = f.label;
+        row.appendChild(lab);
+
+        if (f.type === 'select') {
+          var sel = document.createElement('select');
+          sel.id = 'f_' + f.key;
+          var blank = document.createElement('option');
+          blank.value = '';
+          blank.textContent = '—';
+          sel.appendChild(blank);
+          (f.options || []).forEach(function (opt) {
+            var o = document.createElement('option');
+            o.value = opt;
+            o.textContent = opt;
+            sel.appendChild(o);
+          });
+          sel.addEventListener('change', function () {
+            values[f.key] = sel.value;
+            update();
+          });
+          row.appendChild(sel);
+
+        } else if (f.type === 'stepper') {
+          var wrap = document.createElement('div');
+          wrap.className = 'stepper';
+
+          var minus = document.createElement('button');
+          minus.type = 'button';
+          minus.textContent = '−';
+          minus.setAttribute('aria-label', 'Decrease ' + f.label);
+
+          var inp = document.createElement('input');
+          inp.type = 'number';
+          inp.id = 'f_' + f.key;
+          inp.step = String(f.step);
+          inp.placeholder = '0.00';
+          inp.inputMode = 'decimal';
+
+          var plus = document.createElement('button');
+          plus.type = 'button';
+          plus.textContent = '+';
+          plus.setAttribute('aria-label', 'Increase ' + f.label);
+
+          function bump(dir) {
+            var cur = parseFloat(inp.value);
+            if (isNaN(cur)) cur = 0;
+            var next = cur + dir * f.step;
+            // Round to the step grid so 0.25 increments never drift.
+            inp.value = (Math.round(next / f.step) * f.step).toFixed(2);
+            values[f.key] = inp.value;
+            update();
+          }
+          minus.addEventListener('click', function () { bump(-1); });
+          plus.addEventListener('click', function () { bump(1); });
+          inp.addEventListener('input', function () {
+            values[f.key] = inp.value.trim();
+            update();
+          });
+
+          wrap.appendChild(minus);
+          wrap.appendChild(inp);
+          wrap.appendChild(plus);
+          row.appendChild(wrap);
+
+        } else {
+          var box = document.createElement('div');
+          box.className = 'with-unit';
+          var ni = document.createElement('input');
+          ni.type = 'number';
+          ni.id = 'f_' + f.key;
+          ni.step = 'any';
+          ni.min = '0';
+          ni.placeholder = '0';
+          ni.inputMode = 'decimal';
+          ni.addEventListener('input', function () {
+            values[f.key] = ni.value.trim();
+            update();
+          });
+          box.appendChild(ni);
+          if (f.unit) {
+            var u = document.createElement('span');
+            u.className = 'unit';
+            u.dataset.unitFor = f.key;
+            u.textContent = unitFor(f);
+            box.appendChild(u);
+          }
+          row.appendChild(box);
+        }
+
+        el.fields.appendChild(row);
+      });
+    }
+
+    function setUnit(u) {
+      if (lengthUnit === u) return;
+      lengthUnit = u;
+      el.unitIn.setAttribute('aria-pressed', u === 'in' ? 'true' : 'false');
+      el.unitCm.setAttribute('aria-pressed', u === 'cm' ? 'true' : 'false');
+      var defs = CATEGORY_FIELDS[selectedSlug] || [];
+      defs.forEach(function (f) {
+        if (f.unit !== 'in') return;
+        var span = el.fields.querySelector('[data-unit-for="' + f.key + '"]');
+        if (span) span.textContent = unitFor(f);
+      });
+      update();
+    }
+    el.unitIn.addEventListener('click', function () { setUnit('in'); });
+    el.unitCm.addEventListener('click', function () { setUnit('cm'); });
+
+    // ── Build payload, link and message (mirrors the app's share format) ──
+    function filledFields() {
+      var defs = CATEGORY_FIELDS[selectedSlug] || [];
+      return defs.filter(function (f) {
+        var v = values[f.key];
+        return v !== undefined && v !== null && String(v).trim() !== '';
+      }).map(function (f) {
+        return { key: f.key, label: f.label, value: String(values[f.key]).trim(), unit: unitFor(f) };
+      });
+    }
+
+    function entryLabel() {
+      var custom = el.customLabel.value.trim();
+      var cat = category();
+      return custom || (cat ? cat.label : '');
+    }
+
+    function buildLink(fields) {
+      var params = new URLSearchParams();
+      var name = el.profileName.value.trim();
+      if (name) params.set('n', name);
+      params.set('cat', selectedSlug);
+      params.set('label', entryLabel());
+      fields.forEach(function (f) {
+        params.append('f_' + f.key, f.unit ? f.value + ' ' + f.unit : f.value);
+      });
+      return BASE_URL + '/m?' + params.toString();
+    }
+
+    function buildMessage(fields, link) {
+      var cat = category();
+      var catLabel = cat ? cat.label : selectedSlug;
+      var name = el.profileName.value.trim() || 'Someone';
+      var custom = el.customLabel.value.trim();
+
+      var parts = fields.map(function (f) {
+        return f.label + ': ' + f.value + (f.unit ? ' ' + f.unit : '');
+      });
+
+      var text = name + "'s " + catLabel + ' measurements';
+      if (custom && custom !== catLabel) text += ' (' + custom + ')';
+      text += ':\n';
+      text += parts.join(', ') + '.';
+      text += '\n\nSave in app: ' + link;
+      return text;
+    }
+
+    var current = { link: '', message: '', ready: false };
+
+    function update() {
+      var fields = selectedSlug ? filledFields() : [];
+      var ready = !!selectedSlug && fields.length > 0;
+      current.ready = ready;
+
+      if (!ready) {
+        current.link = '';
+        current.message = '';
+        el.preview.className = 'preview empty';
+        el.preview.textContent = selectedSlug
+          ? 'Enter at least one measurement to build the link.'
+          : 'Pick a template and enter at least one measurement.';
+        el.linkBox.style.display = 'none';
+        el.openBtn.style.display = 'none';
+      } else {
+        current.link = buildLink(fields);
+        current.message = buildMessage(fields, current.link);
+        el.preview.className = 'preview';
+        el.preview.textContent = current.message;
+        el.linkBox.style.display = 'block';
+        el.linkBox.textContent = current.link;
+        el.openBtn.style.display = 'block';
+        el.openBtn.href = current.link;
+      }
+
+      el.waBtn.disabled = !ready;
+      el.shareBtn.disabled = !ready;
+      el.copyMsgBtn.disabled = !ready;
+      el.copyLinkBtn.disabled = !ready;
+      el.status.textContent = '';
+    }
+
+    el.profileName.addEventListener('input', update);
+    el.customLabel.addEventListener('input', update);
+
+    // ── Actions ──
+    function flash(btn, label) {
+      var original = btn.textContent;
+      btn.textContent = label;
+      setTimeout(function () { btn.textContent = original; }, 2000);
+    }
+
+    function copy(text, btn) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          flash(btn, 'Copied!');
+        }, function () {
+          el.status.textContent = 'Could not copy — select the text above instead.';
+        });
+      } else {
+        el.status.textContent = 'Could not copy — select the text above instead.';
+      }
+    }
+
+    el.copyMsgBtn.addEventListener('click', function () {
+      if (current.ready) copy(current.message, el.copyMsgBtn);
+    });
+    el.copyLinkBtn.addEventListener('click', function () {
+      if (current.ready) copy(current.link, el.copyLinkBtn);
+    });
+    el.waBtn.addEventListener('click', function () {
+      if (!current.ready) return;
+      window.open('https://wa.me/?text=' + encodeURIComponent(current.message), '_blank', 'noopener');
+    });
+
+    if (navigator.share) {
+      el.shareBtn.style.display = 'block';
+      el.shareBtn.addEventListener('click', function () {
+        if (!current.ready) return;
+        navigator.share({ text: current.message }).catch(function () {});
+      });
+    }
+
+    // Prefill from a ?cat= query so blog posts can deep-link to a template.
+    var initial = new URLSearchParams(window.location.search).get('cat');
+    if (initial && CATEGORY_FIELDS[initial]) selectTemplate(initial);
+    else update();
+  })();
+  </script>
+</body>
+</html>
