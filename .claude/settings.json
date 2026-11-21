@@ -1,4 +1,11 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(dig mizos.in A +short)",
+      "Bash(dig www.mizos.in CNAME +short)",
+      "WebFetch(domain:docs.expo.dev)"
+    ]
+  },
   "enabledPlugins": {
     "expo@claude-plugins-official": true
   }
